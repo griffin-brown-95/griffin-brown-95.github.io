@@ -1,2 +1,2 @@
-# griffin_portfolio
+# Griffin_Portfolio
 Personal portfolio
