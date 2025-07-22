@@ -4,7 +4,7 @@
 
 ## Projects
 
-### [Money Mop: Scalable Cashback Experimentation Pipeline]([/sample_page](https://github.com/griffin-brown-95/money_mop))
+### [Money Mop: Scalable Cashback Experimentation Pipeline]((https://github.com/griffin-brown-95/money_mop))
 
 Quick Overview:
 - Databricks ELT Pipeline: Bronze ingestion of synthetic transactions → Silver enrichment with randomized A/B assignment & cashback policies → Gold aggregation of spend & cashback metrics.
