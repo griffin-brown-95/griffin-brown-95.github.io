@@ -12,7 +12,7 @@ Quick Overview:
 - Delta-Backed Data Model: Tables for experiment design (information fractions & Z-score thresholds) and observed results, driving a “Z vs Information Fraction” dashboard.
 - Production-Grade Architecture: Centralized YAML configs, shared Spark utilities, modular scripts, and Databricks Jobs for reliable, incremental runs.
 
-
+---
 
 ### [Swire Coca-Cola Time Series Forecasting](https://github.com/griffin-brown-95/GLB-Capstone-2)
 
