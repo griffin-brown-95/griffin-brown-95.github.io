@@ -4,7 +4,7 @@
 
 ## Projects
 
-### ([Money Mop: Scalable Cashback Experimentation Pipeline](https://github.com/griffin-brown-95/money_mop))
+### [Money Mop: Scalable Cashback Experimentation Pipeline](https://github.com/griffin-brown-95/money_mop)
 
 Quick Overview:
 - Databricks ELT Pipeline: Bronze ingestion of synthetic transactions → Silver enrichment with randomized A/B assignment & cashback policies → Gold aggregation of spend & cashback metrics.
@@ -14,7 +14,7 @@ Quick Overview:
 
 
 
-### ([Swire Coca-Cola Time Series Forecasting](https://github.com/griffin-brown-95/GLB-Capstone-2))
+### [Swire Coca-Cola Time Series Forecasting](https://github.com/griffin-brown-95/GLB-Capstone-2)
 
 Quick Overview:
 - EDA: Found planned maintenance takes significantly less time (~48 minutes) than unplanned (~93 minutes).
