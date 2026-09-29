@@ -1,8 +1,11 @@
-# Each project renders as a card on the homepage, in this order.
-# Lead with the why; the how comes last.
+# Each project renders as a row in the homepage index, in this order. Clicking a row
+# wipes open the full project (linkable at /#<slug>). Lead with the why; the how comes last.
 #
 # Fields (only title and why are required):
 #   title, kicker        heading and a one-line context above it
+#   slug                 optional: URL hash; defaults to the title, slugified
+#   summary              optional: one-line teaser in the index; defaults to a trimmed `why`
+#   category, year       shown in the index; categories become filter chips once there are 2+
 #   why                  the problem and why it was worth solving (HTML allowed)
 #   before / after       lists: the old way vs. what the project changed
 #   outcome              optional: a measurable result, shown as a callout
@@ -14,6 +17,9 @@
 
 - title: Blade Runner
   kicker: Automated performance data &middot; US Speedskating short track
+  category: Data Engineering
+  year: 2026
+  summary: Replaced a weekly CSV-and-Excel routine with a pipeline that keeps coaches' lap data current every night.
   why: >-
     Coaches need to see each skater's <strong>progress</strong> and <strong>training load</strong>.
     The lap data already existed; getting it into a usable shape was the bottleneck.
