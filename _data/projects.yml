@@ -39,4 +39,5 @@
     The metric views are plain SQL and can move to Snowflake as the program grows.
   tags: [Python, SQL, SQLite, GitHub Actions, GitHub Pages, Streamlit, pandas]
   links:
+    - { label: Live dashboard, url: "https://griffin-brown-95.github.io/blade_runner/" }
     - { label: Code, url: "https://github.com/griffin-brown-95/blade_runner" }
