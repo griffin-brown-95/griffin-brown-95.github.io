@@ -1,0 +1,42 @@
+# Each project renders as a card on the homepage, in this order.
+# Lead with the why; the how comes last.
+#
+# Fields (only title and why are required):
+#   title, kicker        heading and a one-line context above it
+#   why                  the problem and why it was worth solving (HTML allowed)
+#   before / after       lists: the old way vs. what the project changed
+#   outcome              optional: a measurable result, shown as a callout
+#   next                 optional: where the project goes from here
+#   pipeline             optional: list of {name, note} build steps
+#   how                  optional: a sentence on the build
+#   tags                 tools used
+#   links                list of {label, url}; label "Code" gets the GitHub icon
+
+- title: Blade Runner
+  kicker: Automated performance data &middot; US Speedskating short track
+  why: >-
+    Coaches need to see each skater's <strong>progress</strong> and <strong>training load</strong>.
+    The lap data already existed; getting it into a usable shape was the bottleneck.
+  before:
+    - Download CSV exports from the timing website by hand
+    - Clean, merge and chart everything in Excel
+    - Repeat every week, spending hours on data prep instead of on athletes
+  after:
+    - Every lap is pulled automatically, every night
+    - One consistent model of skaters, sessions and laps
+    - A dashboard that's already current when coaches open it
+  next: >-
+    On-ice laps are one piece of an athlete's load. The same foundation can take in gym and
+    heart-rate data, so staff can weigh total load against progress.
+  pipeline:
+    - { name: Sporthive API, note: "MYLAPS lap timing" }
+    - { name: ingest.py, note: "nightly incremental scrape" }
+    - { name: SQLite, note: "activities · sessions · laps" }
+    - { name: SQL views, note: "skater_day · totals" }
+    - { name: Dashboards, note: "GitHub Pages + Streamlit" }
+  how: >-
+    Scheduled with GitHub Actions and hosted on GitHub Pages, so there are no servers and no cloud bill.
+    The metric views are plain SQL and can move to Snowflake as the program grows.
+  tags: [Python, SQL, SQLite, GitHub Actions, GitHub Pages, Streamlit, pandas]
+  links:
+    - { label: Code, url: "https://github.com/griffin-brown-95/blade_runner" }

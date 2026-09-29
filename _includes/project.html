@@ -1,0 +1,77 @@
+{% assign p = include.project %}
+<article class="project">
+   <div class="project-head">
+      <div>
+         {% if p.kicker %}<p class="project-kicker">{{ p.kicker }}</p>{% endif %}
+         <h3>{{ p.title }}</h3>
+      </div>
+      {% if p.links %}
+      <div class="project-links">
+         {% for link in p.links %}
+         <a class="btn btn-small" href="{{ link.url }}" target="_blank" rel="noopener">
+            {% if link.label == "Code" %}<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>{% endif %}
+            {{ link.label }}
+         </a>
+         {% endfor %}
+      </div>
+      {% endif %}
+   </div>
+
+   <div class="why">
+      <p class="label">Why</p>
+      <p class="why-statement">{{ p.why }}</p>
+   </div>
+
+   {% if p.before or p.after %}
+   <div class="compare">
+      {% if p.before %}
+      <div class="compare-col before">
+         <p class="label">Before</p>
+         <ul>{% for item in p.before %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if p.after %}
+      <div class="compare-col after">
+         <p class="label">After</p>
+         <ul>{% for item in p.after %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+   </div>
+   {% endif %}
+
+   {% if p.outcome %}
+   <div class="outcome">
+      <p class="label">Outcome</p>
+      <p>{{ p.outcome }}</p>
+   </div>
+   {% endif %}
+
+   {% if p.next %}
+   <div class="next">
+      <p class="label">What's next</p>
+      <p>{{ p.next }}</p>
+   </div>
+   {% endif %}
+
+   {% if p.pipeline or p.how or p.tags %}
+   <details class="how" open>
+      <summary><span class="label">How it's built</span></summary>
+      {% if p.pipeline %}
+      <div class="pipeline">
+         {% for s in p.pipeline %}
+         {% unless forloop.first %}<div class="arrow" aria-hidden="true"></div>{% endunless %}
+         <div class="stage{% if forloop.last %} stage-end{% endif %}">
+            <span class="stage-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <strong>{{ s.name }}</strong>
+            {% if s.note %}<small>{{ s.note }}</small>{% endif %}
+         </div>
+         {% endfor %}
+      </div>
+      {% endif %}
+      {% if p.how %}<p class="how-note">{{ p.how }}</p>{% endif %}
+      {% if p.tags %}
+      <ul class="tags">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+      {% endif %}
+   </details>
+   {% endif %}
+</article>
