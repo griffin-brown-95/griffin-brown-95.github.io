@@ -1,11 +1,13 @@
 title: Griffin Brown
-logo: "/images/thumbnail.JPG?raw=true" # your photo (or logo) here
-description: > # your text below (remove <br> elements if you don't need line breaks)
-  Retired Alpine ski racer, MSBA graduate. 
-  <br><br>
-  <a href="https://www.linkedin.com/in/griffin-l-brown/">View My LinkedIn Profile</a> 
-  
-remote_theme: pages-themes/minimal@v0.2.0
+description: Retired alpine ski racer turned data engineer. MSBA graduate building data pipelines and analytics for sport.
+logo: "/images/thumbnail.JPG"
+github_url: "https://github.com/griffin-brown-95"
+linkedin_url: "https://www.linkedin.com/in/griffin-l-brown/"
+
 plugins:
-- jekyll-remote-theme
-google_analytics: UA-000000-0 # your Google Analytics tracking ID here
+- jekyll-seo-tag
+
+exclude:
+- README.md
+- LICENSE
+- .Rhistory

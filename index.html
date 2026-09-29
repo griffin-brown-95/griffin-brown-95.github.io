@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<section class="hero">
+   <div class="hero-text">
+      <p class="eyebrow">Data Engineering &middot; Sports Analytics</p>
+      <h1>Hi, I'm Griffin.<br><span class="grad">I turn raw data into answers.</span></h1>
+      <p class="lede">
+         Retired alpine ski racer and MSBA graduate. I build data pipelines,
+         experiments and dashboards &mdash; lately for elite winter sport.
+      </p>
+      <div class="cta">
+         <a class="btn btn-primary" href="#projects">See my work</a>
+         <a class="btn btn-ghost" href="{{ site.linkedin_url }}" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+   </div>
+   <div class="hero-photo">
+      <img src="{{ site.logo | relative_url }}" alt="Portrait of Griffin Brown">
+   </div>
+</section>
+
+<section id="projects" class="section">
+   <div class="section-head">
+      <h2>Featured project</h2>
+      <span class="rule"></span>
+   </div>
+
+   <article class="project">
+      <div class="project-head">
+         <div>
+            <p class="project-kicker">Speed skating &middot; US Speedskating short track</p>
+            <h3>Blade Runner</h3>
+         </div>
+         <a class="btn btn-small" href="https://github.com/griffin-brown-95/blade_runner" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+            View code
+         </a>
+      </div>
+
+      <p class="project-summary">
+         Practice-lap analytics for US Speedskating's short track group at the Utah Olympic Oval.
+         Every lap is timed by MYLAPS transponders on a 111&nbsp;m track; Blade Runner scrapes those
+         public timing feeds nightly, models them into skaters, sessions and laps, and publishes a
+         dashboard the coaching staff can open from anywhere &mdash; with no servers and no cloud bill.
+      </p>
+
+      <div class="pipeline" aria-label="Pipeline: Sporthive API to ingest to SQLite to SQL views to dashboards">
+         <div class="stage"><span class="stage-n">01</span><strong>Sporthive API</strong><small>live lap timing</small></div>
+         <div class="arrow" aria-hidden="true"></div>
+         <div class="stage"><span class="stage-n">02</span><strong>ingest.py</strong><small>incremental scrape</small></div>
+         <div class="arrow" aria-hidden="true"></div>
+         <div class="stage"><span class="stage-n">03</span><strong>SQLite</strong><small>activities &middot; sessions &middot; laps</small></div>
+         <div class="arrow" aria-hidden="true"></div>
+         <div class="stage"><span class="stage-n">04</span><strong>SQL views</strong><small>skater_day &middot; totals</small></div>
+         <div class="arrow" aria-hidden="true"></div>
+         <div class="stage stage-end"><span class="stage-n">05</span><strong>Dashboards</strong><small>static site + Streamlit</small></div>
+      </div>
+
+      <div class="features">
+         <div class="feature">
+            <h4>Automated ingestion</h4>
+            <p>A GitHub Actions workflow scrapes nightly, commits the database and redeploys the site. Backfills run by date range.</p>
+         </div>
+         <div class="feature">
+            <h4>Lap-level data model</h4>
+            <p>Transponder-days split into continuous on-ice sessions and individual laps, with a chip&nbsp;&rarr;&nbsp;skater mapping layer.</p>
+         </div>
+         <div class="feature">
+            <h4>Training metrics</h4>
+            <p>Sessions, lap volume, fastest and average lap and time on ice per skater per day, rolled up into season totals.</p>
+         </div>
+         <div class="feature">
+            <h4>Zero-infrastructure deploy</h4>
+            <p>Static dashboard on GitHub Pages; the team forks the repo to run their own. Views are portable to Snowflake.</p>
+         </div>
+      </div>
+
+      <ul class="tags">
+         <li>Python</li><li>SQL</li><li>SQLite</li><li>GitHub Actions</li><li>GitHub Pages</li><li>Streamlit</li><li>pandas</li>
+      </ul>
+   </article>
+</section>
