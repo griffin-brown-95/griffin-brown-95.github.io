@@ -8,6 +8,9 @@ plugins:
 - jekyll-seo-tag
 
 exclude:
+- Gemfile
+- Gemfile.lock
+- vendor
 - README.md
 - LICENSE
 - .Rhistory
