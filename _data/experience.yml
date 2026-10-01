@@ -1,0 +1,244 @@
+# Work experience, rendered in the homepage Experience section.
+#
+# disciplines   the tabs, in order. A tab only appears once it has at least one highlight.
+# roles         the timeline. `key` is how highlights point at a role.
+# highlights    one card each. Lead with the why and the result; the how is the footer.
+#   title, why          required (why allows HTML)
+#   metric, metric_label  optional headline number, e.g. "20+ hrs" / "of manual reporting cut each week"
+#   tags                which tabs the card appears under (keys from `disciplines`)
+#   role                key from `roles`
+#   tools               short list of tools
+#   case_study          slug of an entry in `case_studies`; adds a "Read the case study" link
+#   featured            true makes the card full width
+# case_studies  long-form write-ups that open in an overlay, linkable at /#<slug>.
+#
+# Keep employer figures public-safe: percentages and directions, no dollar totals or internal table names.
+
+disciplines:
+  - { key: science, label: Data Science }
+  - { key: engineering, label: Data Engineering }
+  - { key: analysis, label: Data Analysis }
+  - { key: more, label: More }
+
+roles:
+  - key: uolf
+    org: Utah Olympic Legacy Foundation
+    title: Analytics Engineer
+    dates: 2021 – present
+    summary: Sole owner of the data function at the nonprofit that runs Utah's Olympic venues.
+  - key: pcss
+    org: Park City Ski & Snowboard
+    title: Coach &amp; Business Development Analyst
+    dates: 2019 – 2021
+    summary: Coached a 40-athlete race program and built the club's first BI reporting.
+  - key: msba
+    org: University of Utah, Eccles School of Business
+    title: M.S. Business Analytics
+    dates: 2024
+    summary: Capstone forecasting production downtime for Swire Coca-Cola.
+  - key: uvm
+    org: University of Vermont
+    title: B.S. Applied Mathematics
+    dates: 2018
+    summary: Captain of the NCAA Division I alpine ski team.
+
+highlights:
+  - title: Pricing Gold Pass so the park could learn from it
+    featured: true
+    metric: "+11%"
+    metric_label: Gold Pass revenue the season after the new pricing
+    why: >-
+      Dynamic pricing made busy days look like high prices <em>caused</em> attendance, so years of sales
+      data couldn't answer the basic question: what does price actually do? I replaced it with a simple
+      demand-scored rate card, then used the cleaner data to run the park's first controlled price tests.
+    tags: [science, analysis]
+    role: uolf
+    tools: [Snowflake, dbt, Python, Experiment design]
+    case_study: gold-pass-pricing
+
+  - title: Proving a discounted-access program brought people back
+    metric: 50%
+    metric_label: more likely to return
+    why: >-
+      Leadership needed to know whether the "scholarship" pricing program was worth funding. I built the
+      dataset from raw sources to a clean model and showed participants were 50% more likely to come back.
+    tags: [science, analysis]
+    role: uolf
+    tools: [SQL, dbt, Snowflake]
+
+  - title: Replacing 15 disconnected systems with one source of truth
+    metric: 20+ hrs
+    metric_label: of manual reporting cut each week
+    why: >-
+      Point of sale, web analytics and registration data lived in 15+ systems that didn't agree, and
+      reporting meant stitching spreadsheets by hand. I built the warehouse from zero and consolidated them.
+    tags: [engineering, analysis]
+    role: uolf
+    tools: [Snowflake, dbt, Fivetran, Python]
+
+  - title: Keeping live prices in sync automatically
+    metric: Reverse ETL
+    metric_label: warehouse to point of sale
+    why: >-
+      Scheduled price changes were keyed into the point of sale by hand. I built a pipeline that pushes
+      them from Snowflake into the POS, so the prices guests see always match the plan.
+    tags: [engineering]
+    role: uolf
+    tools: [Snowflake, Python, REST APIs]
+
+  - title: Survey emails triggered straight from operational data
+    metric: Automated
+    metric_label: post-visit surveys
+    why: >-
+      Post-visit surveys should reach guests while the visit is fresh. A stored procedure and task DAG in
+      Snowflake sends them through Mailchimp/Mandrill straight from visit data, connecting operations to
+      customer communication.
+    tags: [engineering, more]
+    role: uolf
+    tools: [Snowflake Tasks, Mailchimp, Mandrill]
+
+  - title: Orchestration with repeatable dev and prod deployments
+    metric: Dev / prod
+    metric_label: templated, repeatable deployments
+    why: >-
+      Reports are only as good as their last refresh. I orchestrated the full pipeline with Snowflake
+      Tasks and templated dev/prod deployments so refreshes run the same way every time.
+    tags: [engineering]
+    role: uolf
+    tools: [Snowflake Tasks, Git, AWS]
+
+  - title: Reading customer reviews without leaving the warehouse
+    metric: LLM
+    metric_label: sentiment scoring in Snowflake
+    why: >-
+      Customer reviews held useful signals that nobody had time to read. I scored sentiment with
+      Snowflake Cortex and Claude inside the warehouse, so the data never had to be exported to be analyzed.
+    tags: [science, engineering]
+    role: uolf
+    tools: [Snowflake Cortex, Claude, SQL]
+
+  - title: Sizing the cost of closing venues for construction
+    metric: C-suite
+    metric_label: model built with the CEO, COO and CFO
+    why: >-
+      Capital projects meant closing venues, and leadership needed to know what each closure would cost
+      before choosing when to build. I modeled the revenue and operational impact with the executive team.
+    tags: [analysis]
+    role: uolf
+    tools: [SQL, Python, Excel]
+
+  - title: One view of athlete enrollment across four systems
+    metric: 4 → 1
+    metric_label: registration systems unified
+    why: >-
+      Sports directors couldn't see retention because enrollment lived in four registration platforms.
+      I merged them into one dataset and gave them the retention and dropout metrics they plan around.
+    tags: [analysis, engineering]
+    role: uolf
+    tools: [dbt, Snowflake]
+
+  - title: Catching the group booking that the staff schedule missed
+    metric: 82 days
+    metric_label: of notice that never reached scheduling
+    why: >-
+      The busiest Tuesday of summer 2026 came from a 692-person group booked months ahead, and the gate
+      was understaffed anyway. I traced it and proposed a weekly group-booking look-ahead for operations.
+    tags: [analysis]
+    role: uolf
+    tools: [SQL, dbt]
+
+  - title: Live dashboards for marketing
+    metric: Real-time
+    metric_label: pricing and campaign visibility
+    why: >-
+      Marketing was making pricing and campaign calls without current numbers. With the Director of
+      Marketing, I built dashboards that combine ticket sales, yield, usage and Google Analytics.
+    tags: [analysis, more]
+    role: uolf
+    tools: [Snowflake, BI, Google Analytics]
+
+  - title: Turning spreadsheet teams into data users
+    metric: Org-wide
+    metric_label: analytics adoption
+    why: >-
+      New dashboards don't help if people keep using spreadsheets. I replaced spreadsheet reporting with
+      governed dashboards and ran training until non-technical teams used data on their own.
+    tags: [more]
+    role: uolf
+    tools: [Training, Dashboards]
+
+  - title: The club's first structured financial reporting
+    metric: First
+    metric_label: BI work at the organization
+    why: >-
+      Year-over-year finances were buried in inconsistent general-ledger codes. I normalized them and
+      built the club's first Power BI reports.
+    tags: [analysis]
+    role: pcss
+    tools: [Power BI, DAX]
+
+case_studies:
+  - slug: gold-pass-pricing
+    title: Pricing Gold Pass so the park could learn from it
+    kicker: Case study &middot; Utah Olympic Park &middot; 2025 – 2026
+    why: >-
+      Dynamic pricing raised prices on days that were already busy, so price and attendance rose together.
+      That made the park's own sales data useless for the most basic pricing question: what happens when
+      we change the price?
+    stats:
+      - { value: "+11%", label: Gold Pass revenue vs. the prior season }
+      - { value: "+12%", label: Gold Pass tickets vs. the prior season }
+      - { value: "0%", label: change in public tickets at +$5 on peak days }
+      - { value: "~2×", label: a typical Monday's attendance on Community Day }
+    chapters:
+      - label: The problem
+        title: The data said higher prices brought more guests
+        body: >-
+          Under dynamic pricing, a day's price climbed as it filled. Plotting price against attendance
+          gave a positive correlation (r = +0.495), which taken at face value says raising prices
+          <em>increases</em> attendance. That's backwards: busy days were busy for other reasons, and the
+          pricing system happened to charge more on them. As long as price followed demand, no amount of
+          history could tell us how guests respond to price.
+      - label: What drives demand
+        title: Three factors explained most of the difference between days
+        body: >-
+          Before setting any prices, I studied what actually predicts demand at the park. Three factors stood
+          out: the <strong>month</strong>, the <strong>day of the week</strong>, and whether there's an
+          <strong>event</strong> (a holiday, festival or major competition). Those became the inputs to the
+          new pricing.
+      - label: The rule
+        title: A rate card anyone at the front desk can follow
+        body: >-
+          Each date gets a score: month + day of week + event. The total maps to one of three price tiers,
+          set at or just above what guests had actually paid on similar days before. A July Saturday with an
+          event scores highest; a May Wednesday scores lowest. Price became a deliberate decision instead of
+          a side effect of demand.
+        items:
+          - "<strong>Month:</strong> 1 (May, Sep) to 3 (July)"
+          - "<strong>Day of week:</strong> 1 (Mon–Wed) to 3 (Fri–Sat)"
+          - "<strong>Event:</strong> 1 for none, 3 for a holiday or major event"
+          - "<strong>Total 0–4, 5–6, 7–9:</strong> lowest, middle and highest price tier"
+      - label: The result
+        title: The best season of any pricing model since 2021
+        body: >-
+          Summer 2026 Gold Pass revenue rose 11% and tickets rose 12% over the prior season, ahead of both
+          the earlier standard-price years and the dynamic-pricing years. Walk-up purchases jumped from
+          about 40% to 61% of tickets. One honest caveat: the same season also moved from two time-blocked
+          sessions to one all-day pass, so the gain belongs to the new model as a whole, not to price alone.
+      - label: The experiments
+        title: With fixed prices, the park could finally test price
+        body: >-
+          Fixed prices made controlled tests possible for the first time. I designed three for summer 2026,
+          each with treatment and control days and checks for guests who simply switch to a cheaper day.
+          Samples are small, so these are directional reads, not proof.
+        items:
+          - "<strong>Peak-day price ceiling (+$5 on July days):</strong> public tickets were identical in both groups. Peak days have room above the current price. (Walk-up pricing narrowed the gap guests actually paid to about $3.)"
+          - "<strong>Shoulder-season days (+$5 in August):</strong> the higher-priced days sold 20% more public tickets than the June comparison days. No sign that the higher price held demand back, though the test days fell on Fridays and in a different month."
+          - "<strong>Community Day (~40% off on a Monday):</strong> about twice a typical June Monday's attendance at about the same revenue. Strong early evidence that local demand is held back by price."
+      - label: What's next
+        title: Taking the method to winter and to other products
+        body: >-
+          The same approach now drives the proposed 2026/27 tubing rate card: score-based prices replayed
+          against a full season of ticket-level sales, projecting about +8% revenue with a worst case of
+          roughly flat. Summer Bobsled, whose price has never been tested, is the next experiment.
+    tags: [Experiment design, Causal inference, Demand modeling, Simulation, Snowflake, dbt]

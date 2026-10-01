@@ -19,7 +19,7 @@
   kicker: Automated performance data &middot; US Speedskating short track
   category: Data Engineering
   year: 2026
-  summary: Replaced a weekly CSV-and-Excel routine with a pipeline that keeps coaches' lap data current every night.
+  summary: Replaced a weekly CSV-and-Excel routine with a pipeline that keeps US Speed Skating coaches' lap data current every night.
   why: >-
     Coaches need to see each skater's <strong>progress</strong> and <strong>training load</strong>.
     The lap data already existed; getting it into a usable shape was the bottleneck.

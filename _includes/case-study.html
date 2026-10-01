@@ -1,0 +1,40 @@
+{% assign c = include.case %}
+<article class="project case">
+   <div class="project-head">
+      <div>
+         {% if c.kicker %}<p class="project-kicker">{{ c.kicker }}</p>{% endif %}
+         <h3>{{ c.title }}</h3>
+      </div>
+   </div>
+
+   <div class="why">
+      <p class="label">Why</p>
+      <p class="why-statement">{{ c.why }}</p>
+   </div>
+
+   {% if c.stats %}
+   <div class="case-stats">
+      {% for s in c.stats %}
+      <div class="case-stat"><strong>{{ s.value }}</strong><span>{{ s.label }}</span></div>
+      {% endfor %}
+   </div>
+   {% endif %}
+
+   <ol class="chapters">
+      {% for ch in c.chapters %}
+      <li class="chapter">
+         <span class="chapter-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+         <div class="chapter-body">
+            <p class="label">{{ ch.label }}</p>
+            <h4>{{ ch.title }}</h4>
+            <p>{{ ch.body }}</p>
+            {% if ch.items %}<ul>{% for i in ch.items %}<li>{{ i }}</li>{% endfor %}</ul>{% endif %}
+         </div>
+      </li>
+      {% endfor %}
+   </ol>
+
+   {% if c.tags %}
+   <ul class="tags">{% for t in c.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+   {% endif %}
+</article>
