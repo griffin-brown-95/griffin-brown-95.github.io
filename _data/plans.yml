@@ -1,0 +1,27 @@
+# Unlisted plans, shown at /plans/. Not linked from the homepage and marked noindex,
+# so they're only reachable by direct link. The page sorts them in the browser:
+# upcoming first (soonest at the top, undated after that), then past ones.
+#
+# To add one: drop a standalone HTML file in /plans/ and add an entry here.
+#   title    heading on the card
+#   file     filename inside /plans/
+#   start    optional: first day, YYYY-MM-DD (no start = upcoming, date TBD)
+#   end      optional: last day, YYYY-MM-DD (defaults to start)
+#   dates    optional: how the date reads on the card
+#   blurb    optional: one line of context
+#   accent   optional: a color for the card's edge, to match the plan's own vibe
+
+- title: Austin Night 1
+  file: austin_night_1.html
+  start: 2026-10-14
+  dates: October 14, 2026
+  blurb: Rooftop at golden hour, small plates, and a two-step on East 6th.
+  accent: "#b8566a"
+
+- title: Park City Trip
+  file: park_city_trip_plan.html
+  start: 2026-09-05
+  end: 2026-09-13
+  dates: September 5 – September 13, 2026
+  blurb: A rough, mostly-accurate itinerary. Golf, the Uintas, bike rides, miso fish.
+  accent: "#24463B"

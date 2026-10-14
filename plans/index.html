@@ -1,0 +1,195 @@
+---
+layout: null
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6ece6">
+<title>Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6ece6;
+    --card:#fffaf7;
+    --line:#ead7cf;
+    --wine:#5e1a2a;
+    --rose:#b8566a;
+    --ink:#2d1b20;
+    --muted:#80666c;
+  }
+  *{box-sizing:border-box;}
+  html{background:var(--bg);}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 90% 45% at 50% -10%, rgba(184,86,106,0.16), transparent 70%),
+      radial-gradient(ellipse 70% 40% at 0% 100%, rgba(94,26,42,0.07), transparent 70%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Jost', system-ui, sans-serif;
+    line-height:1.5;
+    -webkit-text-size-adjust:100%;
+    padding-bottom:calc(60px + env(safe-area-inset-bottom));
+  }
+  .wrap{
+    max-width:600px;
+    margin:0 auto;
+    padding:56px max(24px, env(safe-area-inset-right)) 0 max(24px, env(safe-area-inset-left));
+  }
+  header{text-align:center;margin-bottom:36px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--rose);
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:68px;
+    line-height:1;
+    margin:8px 0 10px;
+    color:var(--wine);
+  }
+  .subtitle{color:var(--muted);margin:0;}
+  .flourish{display:block;margin:18px auto 0;width:90px;height:auto;}
+
+  .section-label{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--rose);
+    margin:0 0 12px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-label::after{content:"";flex:1;height:1px;background:var(--line);}
+  section + section{margin-top:36px;}
+  section[hidden]{display:none;}
+
+  .list{list-style:none;margin:0;padding:0;display:grid;gap:14px;}
+  .plan{
+    display:block;
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent, var(--rose));
+    border-radius:14px;
+    padding:18px 48px 18px 20px;
+    color:inherit;
+    text-decoration:none;
+    box-shadow:0 1px 2px rgba(94,26,42,0.04), 0 10px 24px -14px rgba(94,26,42,0.25);
+    transition:transform .2s ease, box-shadow .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .plan:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(94,26,42,0.05), 0 16px 30px -14px rgba(94,26,42,0.32);}
+  .plan:active{transform:none;}
+  .plan-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:28px;
+    line-height:1.1;
+    margin:0 0 4px;
+    color:var(--wine);
+  }
+  .plan-dates{
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rose);
+  }
+  .plan-blurb{font-size:15px;color:var(--muted);margin:8px 0 0;}
+  .arrow{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
+    color:var(--rose);
+  }
+  .past .plan{opacity:.72;box-shadow:none;}
+  .past .plan:hover{opacity:1;}
+  .empty{text-align:center;color:var(--muted);font-style:italic;}
+
+  @media(max-width:599px){
+    .wrap{padding-top:40px;padding-left:16px;padding-right:16px;}
+    h1{font-size:58px;}
+    .plan{padding:16px 44px 16px 16px;}
+    .plan-title{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Just us two</div>
+    <h1>Plans</h1>
+    <p class="subtitle">Things we're doing, roughly.</p>
+    <svg class="flourish" viewBox="0 0 90 12" aria-hidden="true"><path d="M2,6 H36 M54,6 H88" stroke="#d9b7b0" stroke-width="1"/><path d="M45,10 C40,6 38,4 40.5,2.5 C42.5,1.4 44.3,2.6 45,4 C45.7,2.6 47.5,1.4 49.5,2.5 C52,4 50,6 45,10 Z" fill="#b8566a"/></svg>
+  </header>
+
+  {% if site.data.plans and site.data.plans.size > 0 %}
+  <section id="upcoming">
+    <h2 class="section-label">Coming up</h2>
+    <ul class="list">
+      {% for plan in site.data.plans %}
+      <li data-start="{{ plan.start }}" data-end="{{ plan.end | default: plan.start }}">
+        <a class="plan" href="{{ plan.file | prepend: '/plans/' | relative_url }}"{% if plan.accent %} style="--accent: {{ plan.accent }}"{% endif %}>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <h3 class="plan-title">{{ plan.title }}</h3>
+          {% if plan.dates %}<div class="plan-dates">{{ plan.dates }}</div>{% endif %}
+          {% if plan.blurb %}<p class="plan-blurb">{{ plan.blurb }}</p>{% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section id="past" class="past" hidden>
+    <h2 class="section-label">Behind us</h2>
+    <ul class="list"></ul>
+  </section>
+  {% else %}
+  <p class="empty">Nothing planned yet.</p>
+  {% endif %}
+</div>
+
+<script>
+  // Split plans into upcoming (soonest first, undated last) and past (most recent first).
+  (function () {
+    var upcoming = document.querySelector("#upcoming .list");
+    var pastSection = document.getElementById("past");
+    if (!upcoming) return;
+    var d = new Date();
+    var today = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var items = Array.prototype.slice.call(upcoming.children);
+    var soon = [], past = [];
+    items.forEach(function (li) {
+      var end = li.dataset.end || li.dataset.start;
+      (end && end < today ? past : soon).push(li);
+    });
+    soon.sort(function (a, b) {
+      var x = a.dataset.start, y = b.dataset.start;
+      if (!x && !y) return 0;
+      if (!x) return 1;
+      if (!y) return -1;
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+    past.sort(function (a, b) {
+      var x = a.dataset.end || a.dataset.start, y = b.dataset.end || b.dataset.start;
+      return x < y ? 1 : x > y ? -1 : 0;
+    });
+    soon.forEach(function (li) { upcoming.appendChild(li); });
+    past.forEach(function (li) { pastSection.querySelector(".list").appendChild(li); });
+    if (past.length) pastSection.hidden = false;
+    if (!soon.length) upcoming.parentNode.hidden = true;
+  })();
+</script>
+</body>
+</html>
