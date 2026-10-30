@@ -5,13 +5,13 @@ layout: default
 <section class="hero">
    <div class="hero-text">
       <p class="eyebrow">Data Engineering &middot; Analytics &middot; Machine Learning</p>
-      <h1>In the AI era, development is no longer the bottleneck.<br><span class="grad">I leverage AI speed and capability to work with humans to fix data problems.</span></h1>
+      <h1>I've built data stacks from scratch.<br><span class="grad">AI made building cheap. Knowing what to build is the job.</span></h1>
       <p class="lede">
          I'm Griffin, a retired alpine ski racer with an MSBA. I build data products across the entire data spectrum,
          and I judge each one by the same two things: why it was worth building, and what it changed.
       </p>
       <div class="cta">
-         <a class="btn btn-primary" href="#projects">See my work</a>
+         <a class="btn btn-primary" href="#experience">See my work</a>
          <a class="btn btn-ghost" href="{{ site.linkedin_url }}" target="_blank" rel="noopener">Connect on LinkedIn</a>
       </div>
    </div>
@@ -32,6 +32,10 @@ layout: default
    <div class="section-head">
       <h2>Experience</h2>
       <span class="rule"></span>
+      <button type="button" class="head-btn" data-drawer="timeline-drawer" aria-haspopup="dialog">
+         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M12 7h6M12 12H6M12 17h6"/></svg>
+         Timeline
+      </button>
    </div>
 
    {% assign xp = site.data.experience %}
@@ -65,18 +69,96 @@ layout: default
       </article>
       {% endfor %}
    </div>
-
-   <ol class="timeline">
-      {% for r in xp.roles %}
-      <li>
-         <span class="timeline-dates">{{ r.dates }}</span>
-         <strong>{{ r.title }}</strong>
-         <span class="timeline-org">{{ r.org }}</span>
-         {% if r.summary %}<span class="timeline-summary">{{ r.summary }}</span>{% endif %}
-      </li>
-      {% endfor %}
-   </ol>
+   <div class="xp-more" hidden>
+      <button type="button" class="head-btn xp-more-btn" aria-expanded="false"></button>
+   </div>
 </section>
+
+<dialog class="drawer" id="about-drawer" data-hash="about" aria-label="About">
+   <div class="drawer-panel">
+      <div class="drawer-bar">
+         <span class="dialog-crumb"><strong>About</strong></span>
+         <button class="dialog-close" type="button" data-drawer-close aria-label="Close about">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+         </button>
+      </div>
+      <div class="drawer-body">
+   {% assign about = site.data.about %}
+   <div class="about">
+      <div class="about-story">
+         {% if about.heading %}<p class="about-heading">{{ about.heading }}</p>{% endif %}
+         {{ about.story | markdownify }}
+      </div>
+      <aside class="about-side">
+         {% if about.facts %}
+         <div class="about-card">
+            <p class="label">Quick facts</p>
+            <dl class="facts">
+               {% for f in about.facts %}
+               <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+               {% endfor %}
+            </dl>
+         </div>
+         {% endif %}
+         {% if about.outside %}
+         <div class="about-card">
+            <p class="label">Outside of work</p>
+            <ul class="tags">{% for o in about.outside %}<li>{{ o }}</li>{% endfor %}</ul>
+         </div>
+         {% endif %}
+      </aside>
+   </div>
+      </div>
+   </div>
+</dialog>
+
+<dialog class="drawer" id="timeline-drawer" data-hash="timeline" aria-label="Timeline">
+   <div class="drawer-panel">
+      <div class="drawer-bar">
+         <span class="dialog-crumb">Experience / <strong>Timeline</strong></span>
+         <button class="dialog-close" type="button" data-drawer-close aria-label="Close timeline">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+         </button>
+      </div>
+      <div class="drawer-body">
+   {% comment %} Two-lane timeline on a month grid: newest at the top, row 1 = this month. {% endcomment %}
+   {% assign now_y = site.time | date: "%Y" | plus: 0 %}
+   {% assign now_m = site.time | date: "%m" | plus: 0 %}
+   {% assign top = now_y | times: 12 | plus: now_m %}
+   {% assign bottom = top %}
+   {% for r in xp.roles %}
+   {% assign p = r.start | split: "-" %}{% assign m = p[0] | times: 12 | plus: p[1] %}
+   {% if m < bottom %}{% assign bottom = m %}{% endif %}
+   {% endfor %}
+   {% assign first_year = bottom | minus: 1 | divided_by: 12 %}
+   {% assign year_count = now_y | minus: first_year %}
+   <div class="timeline" aria-label="Timeline of work and education">
+      <p class="tl-head tl-head-work">Experience</p>
+      <p class="tl-head tl-head-edu">Education</p>
+      {% for i in (0..year_count) %}
+      {% assign y = now_y | minus: i %}
+      {% assign row = y | times: 12 | plus: 12 %}{% assign row = top | minus: row | plus: 2 %}
+      {% if row < 2 %}{% assign row = 2 %}{% endif %}
+      <span class="tl-year" style="grid-row: {{ row }}" aria-hidden="true">{{ y }}</span>
+      {% endfor %}
+      {% for r in xp.roles %}
+      {% assign p = r.start | split: "-" %}{% assign start_m = p[0] | times: 12 | plus: p[1] %}
+      {% if r.current %}{% assign end_m = top %}{% else %}{% assign p = r.end | split: "-" %}{% assign end_m = p[0] | times: 12 | plus: p[1] | minus: 1 %}{% endif %}
+      {% assign rs = top | minus: end_m | plus: 2 %}{% assign re = top | minus: start_m | plus: 3 %}
+      <article class="tl-item tl-{{ r.kind }}{% if r.current %} is-current{% endif %}" style="grid-row: {{ rs }} / {{ re }}; order: {{ rs }}">
+         <div class="tl-card">
+            <span class="tl-kind">{% if r.kind == "education" %}Education{% else %}Work{% endif %}</span>
+            <span class="tl-dates">{{ r.dates }}</span>
+            <strong>{{ r.title }}</strong>
+            <span class="tl-org">{{ r.org }}</span>
+            {% if r.summary %}<span class="tl-summary">{{ r.summary }}</span>{% endif %}
+         </div>
+      </article>
+      {% endfor %}
+   </div>
+      </div>
+   </div>
+</dialog>
 
 <section id="projects" class="section">
    <div class="section-head">
@@ -115,6 +197,8 @@ layout: default
       {% endfor %}
    </ol>
 </section>
+
+
 
 {% for p in site.data.projects %}
 {% assign slug = p.slug | default: p.title | slugify %}

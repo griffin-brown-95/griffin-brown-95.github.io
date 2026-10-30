@@ -1,7 +1,10 @@
 # Work experience, rendered in the homepage Experience section.
 #
 # disciplines   the tabs, in order. A tab only appears once it has at least one highlight.
-# roles         the timeline. `key` is how highlights point at a role.
+# roles         the timeline: work on the left, education on the right, newest at the top.
+#                 `key` is how highlights point at a role. kind is work or education.
+#                 start/end are "YYYY-MM" and set where the entry sits; use current: true instead
+#                 of end for an ongoing role. dates is the text shown on the entry.
 # highlights    one card each. Lead with the why and the result; the how is the footer.
 #   title, why          required (why allows HTML)
 #   metric, metric_label  optional headline number, e.g. "20+ hrs" / "of manual reporting cut each week"
@@ -22,24 +25,36 @@ disciplines:
 
 roles:
   - key: uolf
+    kind: work
     org: Utah Olympic Legacy Foundation
     title: Analytics Engineer
-    dates: 2021 – present
+    start: "2021-08"
+    current: true
+    dates: Aug 2021 – present
     summary: Sole owner of the data function at the nonprofit that runs Utah's Olympic venues.
   - key: pcss
+    kind: work
     org: Park City Ski & Snowboard
     title: Coach &amp; Business Development Analyst
-    dates: 2019 – 2021
+    start: "2019-11"
+    end: "2021-08"
+    dates: Nov 2019 – Aug 2021
     summary: Coached a 40-athlete race program and built the club's first BI reporting.
   - key: msba
+    kind: education
     org: University of Utah, Eccles School of Business
     title: M.S. Business Analytics
-    dates: 2024
+    start: "2023-08" # TODO: confirm start month
+    end: "2024-12"
+    dates: Graduated Dec 2024
     summary: Capstone forecasting production downtime for Swire Coca-Cola.
   - key: uvm
+    kind: education
     org: University of Vermont
     title: B.S. Applied Mathematics
-    dates: 2018
+    start: "2014-09" # TODO: confirm start month
+    end: "2018-12"
+    dates: Graduated Dec 2018
     summary: Captain of the NCAA Division I alpine ski team.
 
 highlights:
@@ -189,7 +204,7 @@ case_studies:
       - { value: "+11%", label: Gold Pass revenue vs. the prior season }
       - { value: "+12%", label: Gold Pass tickets vs. the prior season }
       - { value: "0%", label: change in public tickets at +$5 on peak days }
-      - { value: "~2×", label: a typical Monday's attendance on Community Day }
+      - { value: "~2.5×", label: a typical Monday's attendance on Community Day }
     chapters:
       - label: The problem
         title: The data said higher prices brought more guests
@@ -223,8 +238,7 @@ case_studies:
         body: >-
           Summer 2026 Gold Pass revenue rose 11% and tickets rose 12% over the prior season, ahead of both
           the earlier standard-price years and the dynamic-pricing years. Walk-up purchases jumped from
-          about 40% to 61% of tickets. One honest caveat: the same season also moved from two time-blocked
-          sessions to one all-day pass, so the gain belongs to the new model as a whole, not to price alone.
+          about 40% to 61% of tickets.
       - label: The experiments
         title: With fixed prices, the park could finally test price
         body: >-
@@ -240,5 +254,5 @@ case_studies:
         body: >-
           The same approach now drives the proposed 2026/27 tubing rate card: score-based prices replayed
           against a full season of ticket-level sales, projecting about +8% revenue with a worst case of
-          roughly flat. Summer Bobsled, whose price has never been tested, is the next experiment.
+          roughly flat. Our Bobsled ride, whose price has never been tested, is the next experiment.
     tags: [Experiment design, Causal inference, Demand modeling, Simulation, Snowflake, dbt]

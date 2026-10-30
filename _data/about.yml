@@ -1,0 +1,31 @@
+# The About section at the bottom of the homepage (linked from "About" in the top nav).
+#
+# heading   the big line at the top of the section
+# story     your copy, in Markdown. Blank lines start new paragraphs.
+# facts     the "Quick facts" card: label / value pairs
+# outside   chips under "Outside of work"
+
+heading: "My journey into the data space has been non-traditional."
+
+story: |
+  I grew up in a small town in Vermont in a family that lived around skiing, and I started racing early. I went on to race Division I at the University of Vermont while studying applied mathematics, and the two fit together more than you’d expect. Ski racing is decided by hundredths of a second, and I learned to look for the small differences in line, timing, and edge that separate a good run from a fast one.
+
+  After graduating I moved to Park City, coached ski racing, and built my first structured reporting in Power BI. In 2021 I joined the Utah Olympic Legacy Foundation and built its data stack from scratch, covering ingestion, transformation, and reporting for leadership and data science work. What made it stick was a model I built with our CEO, COO, and CFO that put a $5M price tag on venue closures during CapEx projects, and watching it change how we scheduled the work. The parallel to racing holds: small efforts compound down the whole course.
+
+  I like to stay hands-on while thinking at the level of the business. Right now that means leading AI adoption at UOLF, which covers teaching people how to use it, deciding what’s worth building, and designing MCP servers. I’m also working with our marketing team on measuring impact with marketing mix modeling, so we can see what actually brings people to our venues.
+
+# [Placeholder] Opening paragraph: where you come from. Racing, the jump from applied math to
+# the start gate, what ski racing taught you about measuring small differences.
+
+# [Placeholder] Middle paragraph: how you got into data, and why it stuck. The moment a piece of
+# work changed a decision, not just a report.
+
+# [Placeholder] Closing paragraph: how you like to work today, and what you're looking for next.
+
+facts:
+  - { label: Based in, value: "Park City, Utah" }
+  - { label: Currently, value: "Analytics Engineer, Utah Olympic Legacy Foundation" }
+  - { label: Education, value: "MSBA, University of Utah · B.S. Applied Math, UVM" }
+  - { label: Before data, value: "Captain, NCAA D1 alpine ski team" }
+
+outside: [Biking, Kiteboarding, Skiing, E-sports, Cooking, Clothing]
