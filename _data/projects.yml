@@ -22,7 +22,7 @@
   year: 2026
   summary: A pick-one game that quietly randomizes color, fill, size, position and layout to measure what actually sways a choice.
   why: >-
-    Teams restyle buttons and layouts constantly, but rarely know which details <strong>actually move a decision</strong>.
+    What easier way to create an experiment than to simply prompt a user to choose A or B?
     I wanted an honest, live measurement of that, built the way a growth team would build it:
     reliable assignment, exposure logging and data you can trust.
   before:
