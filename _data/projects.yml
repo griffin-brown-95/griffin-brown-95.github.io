@@ -24,7 +24,9 @@
   why: >-
     What easier way to create an experiment than to simply prompt a user to choose A or B?
     I wanted an honest, live measurement of that, built the way a growth team would build it:
-    reliable assignment, exposure logging and data you can trust.
+    reliable assignment, exposure logging and data you can trust. 
+
+    This was also an exercise to learn a bit about Go and API development.
   before:
     - Which button wins? Settled by opinion or a single A/B test
     - One change tested at a time, so each test teaches one thing
