@@ -15,6 +15,42 @@
 #   tags                 tools used
 #   links                list of {label, url}; label "Code" gets the GitHub icon
 
+- title: A or B?
+  slug: a-or-b
+  kicker: Live choice experiment &middot; what nudges a decision
+  category: Experimentation
+  year: 2026
+  summary: A pick-one game that quietly randomizes color, fill, size, position and layout to measure what actually sways a choice.
+  why: >-
+    Teams restyle buttons and layouts constantly, but rarely know which details <strong>actually move a decision</strong>.
+    I wanted an honest, live measurement of that, built the way a growth team would build it:
+    reliable assignment, exposure logging and data you can trust.
+  before:
+    - Which button wins? Settled by opinion or a single A/B test
+    - One change tested at a time, so each test teaches one thing
+    - Results trusted without checking the randomization itself
+  after:
+    - Seven factors randomized independently on every pick, so every visit informs all of them
+    - Server-side assignment with salted hashes; an exposure is logged only once the options are actually on screen
+    - Live results with 95% ranges, a minimum sample before anything is shown, and an automatic sample-ratio check
+  next: >-
+    With enough data: one model of all factors at once to find the most-picked layout, and a look at whether
+    the nudges fade for people who come back to play every day.
+  pipeline:
+    - { name: Browser, note: "vanilla JS · GitHub Pages" }
+    - { name: nudge API, note: "Go · Cloud Run" }
+    - { name: Postgres, note: "Supabase · row-level security" }
+    - { name: SQL views, note: "win rates · matchups · traces" }
+    - { name: Dashboard, note: "GET /stats · live" }
+  how: >-
+    A Go service on Cloud Run assigns every trial and validates every event before it's stored; the browser never
+    touches the database. Balance and independence tests on the randomizer run in CI.
+  tags: [Go, PostgreSQL, Supabase, Google Cloud Run, Docker, GitHub Actions, JavaScript]
+  links:
+    - { label: App, url: "https://griffin-brown-95.github.io/nudge/" }
+    - { label: Live dashboard, url: "https://griffin-brown-95.github.io/nudge/dashboard/" }
+    - { label: Code, url: "https://github.com/griffin-brown-95/nudge" }
+
 - title: Blade Runner
   kicker: Automated performance data &middot; US Speedskating short track
   category: Data Engineering
